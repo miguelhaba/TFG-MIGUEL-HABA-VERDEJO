@@ -1,0 +1,9 @@
+function [E_LCAO, S, H11, H12] = calcul_LCAO(dosRa0, alpha, hc, a0, E1s)
+
+S = exp(-dosRa0) .* (1 + dosRa0 + dosRa0.^2/3);
+H11 = E1s + exp(-2*dosRa0) .* (1./dosRa0 + 1) * alpha * hc / a0;
+H12 = 2 * E1s * exp(-dosRa0) .* (1/2 - 1./dosRa0 + 7/6*dosRa0 + dosRa0.^2/6);
+
+% Estat enllaçant (a=1)
+E_LCAO = (H11 + H12) ./ (1 + S);
+end
